@@ -21,6 +21,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.os.SystemClock;
 
+import com.example.android.lifecycles.Logger;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,9 +46,10 @@ public class LiveDataTimerViewModel extends ViewModel {
             @Override
             public void run() {
                 final long newValue = (SystemClock.elapsedRealtime() - mInitialTime) / 1000;
-
+                Logger.logDebug("timer scheduleAtFixedRate with: ", newValue+"");
                 // setValue() cannot be called from a background thread so post to main thread.
                 //TODO post the new value with LiveData.postValue()
+                mElapsedTime.postValue(newValue);
             }
         }, ONE_SECOND, ONE_SECOND);
 

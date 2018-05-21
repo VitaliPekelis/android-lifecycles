@@ -21,10 +21,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.android.codelabs.lifecycle.R;
+import com.example.android.lifecycles.Logger;
 
 
 public class ChronoActivity3 extends AppCompatActivity {
@@ -49,10 +49,11 @@ public class ChronoActivity3 extends AppCompatActivity {
                 String newText = ChronoActivity3.this.getResources().getString(
                         R.string.seconds, aLong);
                 ((TextView) findViewById(R.id.timer_textview)).setText(newText);
-                Log.d("ChronoActivity3", "Updating timer");
+                Logger.logDebug("elapsedTimeObserver", "Updating timer with: " +newText);
             }
         };
 
         //TODO: observe the ViewModel's elapsed time
+        mLiveDataTimerViewModel.getElapsedTime().observe(this, elapsedTimeObserver);
     }
 }
