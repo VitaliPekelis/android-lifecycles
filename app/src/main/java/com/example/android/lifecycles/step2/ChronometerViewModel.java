@@ -20,6 +20,8 @@ import android.support.annotation.Nullable;
 
 import android.arch.lifecycle.ViewModel;
 
+import com.example.android.lifecycles.Logger;
+
 /**
  * A ViewModel used for the {@link ChronoActivity2}.
  */
@@ -35,5 +37,12 @@ public class ChronometerViewModel extends ViewModel {
 
     public void setStartTime(final long startTime) {
         this.mStartTime = startTime;
+    }
+
+    @Override
+    protected void onCleared()
+    {
+        Logger.logDebug();
+        super.onCleared();
     }
 }
