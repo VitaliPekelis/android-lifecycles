@@ -42,6 +42,7 @@ public class BoundLocationManager {
             mContext = context;
             mListener = listener;
             //TODO: Add lifecycle observer
+            lifecycleOwner.getLifecycle().addObserver(this);
         }
 
         //TODO: Call this on resume
